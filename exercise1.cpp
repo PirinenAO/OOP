@@ -43,5 +43,6 @@ void countSecondSeries(void)
         x += y + z;
         y += x + z;
         z += x + y;
+        // hello
     }
 }
