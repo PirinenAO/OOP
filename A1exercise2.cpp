@@ -46,7 +46,7 @@ int askInput(void)
 int countSumBetween(int num1, int num2)
 {
     int i = num1 + 1;
-    int sum;
+    int sum = 0;
 
     for (i; i < num2; i++)
     {
