@@ -55,6 +55,7 @@ int checkPrimes(int number)
     {
         return 0; // if the number is not prime, function returns 0
     }
+
     // the loop continues as long as i*i is less than or equal to the given number
     for (int i = 2; i * i <= number; i++)
     {
@@ -63,5 +64,6 @@ int checkPrimes(int number)
             return 0;
         }
     }
+
     return 1; // if the number is prime number, function returns 1
 }

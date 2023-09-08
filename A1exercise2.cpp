@@ -25,8 +25,10 @@ int main(void)
     }
 
     sum = countSumBetween(number1, number2); // sum variable gets its value from countSumBetween() function
+
     cout << "Sum of numbers between the given numbers " << number1 << " and " << number2 << " is: " << endl
          << sum; // printing out the sum
+
     return 0;
 }
 
