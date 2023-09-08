@@ -22,6 +22,7 @@ int main(void)
         number1 = number2;
         number2 = temp;
     }
+
     // printing the header
     cout << "prime numbers between the given numbers " << number1 << " and " << number2 << " are:" << endl;
 
