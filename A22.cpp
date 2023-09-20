@@ -2,6 +2,7 @@
 #include <string>
 using namespace std;
 
+// declaring functions
 void askData(int);
 void checkStudent(int);
 void askName(int);
@@ -10,8 +11,10 @@ void askProject(int);
 void askExam(int);
 void printStudents();
 
-const int maxAmountOfStudents = 2;
+// amount of students our application will take as input
+const int amountOfStudents = 3;
 
+// declaring struct
 struct student
 {
     string name;
@@ -22,26 +25,31 @@ struct student
     unsigned int grade : 5;
 };
 
-student students[maxAmountOfStudents];
+// declaring array of students
+student students[amountOfStudents];
 
+// MAIN FUNCTION
 int main(void)
 {
-    int i = 0;
-    for (i = 0; i < maxAmountOfStudents; i++)
+    int i;
+    for (i = 0; i < amountOfStudents; i++)
     {
-        askData(i);
-        checkStudent(i);
+        askData(i);      // asking for input
+        checkStudent(i); // calculating grade and checking if course is passed
         cout << endl;
     }
 
-    printStudents();
+    printStudents(); // printing out all the names and how did they succeed
 
     return 0;
 }
 
+// DEFINING FUNCTIONS
+
+// calculating grade and checking if the course is passed
 void checkStudent(int id)
 {
-    // checking if students exam score is 40% or more and if the project work is done
+    // checking if students exam score is 40% or more, and is the project work done
     if (students[id].examPoints >= 40 && students[id].workDone == 1)
     {
         students[id].passed = 1;
@@ -74,13 +82,14 @@ void checkStudent(int id)
         students[id].passed = 0;
     }
 
-    // checking if the activity is more than 0.5, and incrementing the grade if so
+    // checking if the activeness is more than 0.5, and incrementing the grade if so
     if (students[id].passed == 1 && students[id].activeness > 0.5)
     {
         students[id].grade += 1;
     }
 }
 
+// asking for user inputs, by calling functions
 void askData(int id)
 {
     askName(id);
@@ -90,6 +99,7 @@ void askData(int id)
     cin.ignore(); // clears input buffer for the next round
 }
 
+// asks name of the student
 void askName(int id)
 {
     bool nameValid = false;
@@ -118,6 +128,7 @@ void askName(int id)
     }
 }
 
+// asks how active the student has been
 void askActiveness(int id)
 {
     bool activity = false;
@@ -136,6 +147,7 @@ void askActiveness(int id)
     }
 }
 
+// asks if the project work is done
 void askProject(int id)
 {
     bool project = false;
@@ -162,6 +174,7 @@ void askProject(int id)
     }
 }
 
+// asks for the exam score
 void askExam(int id)
 {
     bool exam = false;
@@ -180,10 +193,11 @@ void askExam(int id)
     }
 }
 
+// prints out all the names and how they succeeded
 void printStudents()
 {
     int i = 0;
-    for (i = 0; i < maxAmountOfStudents; i++)
+    for (i = 0; i < amountOfStudents; i++)
     {
         if (students[i].passed)
         {

@@ -2,22 +2,26 @@
 #include <string>
 using namespace std;
 
-std::string getName(int i);
+// const variable
+const int names = 5;
 
+// declaring function
+string getName(int);
+
+// MAIN FUNCTION
 int main(void)
 {
-    const int names = 5;
-    std::string namelist[5] = {};
-    int i, j, k;
-    std::string temp;
+    string namelist[5] = {}; // empty list
+    int i, j, k;             // variable used in our loops
+    string temp;             // temporary variable to hold string
 
-    for (i = 0; i < names; i++)
+    for (i = 0; i < names; i++) // collecting names
     {
-        std::string userInput = getName(i + 1);
+        string userInput = getName(i + 1);
         namelist[i] = userInput;
     }
 
-    for (j = 0; j < names; j++)
+    for (j = 0; j < names; j++) // bubble sort to put names in ascending order
     {
         for (k = j + 1; k < names; k++)
         {
@@ -30,22 +34,25 @@ int main(void)
         }
     }
 
-    std::cout << endl
-              << "Names sorted in ascending alphabetic order: " << endl;
+    cout << endl
+         << "Names sorted in ascending alphabetic order: " << endl; // printing header
 
-    for (i = 0; i < names; i++)
+    for (i = 0; i < names; i++) // printing the names from the list
     {
-        std::cout << namelist[i] << endl;
+        cout << namelist[i] << endl;
     }
 
     return 0;
 }
 
-std::string getName(int i)
+// DEFINING FUNCTIONS
+
+// function which asks user to input names
+string getName(int i)
 {
     char userInput[100] = {};
-    std::cout << "give " << i << ". name: ";
-    std::cin >> userInput;
-    userInput[0] = std::toupper(userInput[0]);
-    return std::string(userInput);
+    cout << "give " << i << ". name: ";
+    cin >> userInput;
+    userInput[0] = toupper(userInput[0]); // turning first letter of the string to upper
+    return string(userInput);             // returning string back to main function
 }
