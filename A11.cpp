@@ -11,6 +11,7 @@ int main(void)
     cout << "First 15 numbers of the first series:" << endl; // printing header text
     countFirstSeries();                                      // calling the first function which counts and prints the first series of numbers
     cout << endl;
+
     cout << "First 15 numbers of the second series:" << endl; // printing header text
     countSecondSeries();                                      // calling the second function which counts and prints the second series of numbers
 }
@@ -39,6 +40,7 @@ void countSecondSeries(void)
 {
     int i;
     int x = 1, y = 1, z = 1;
+
     for (i = 0; i < 5; i++) // looping 5 times, because we want to print 15 numbers (5x3 prints = 15 prints)
     {
         cout << x << "," << y << "," << z << ",";
