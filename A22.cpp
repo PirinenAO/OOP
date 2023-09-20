@@ -1,22 +1,20 @@
 #include <iostream>
 #include <string>
-#include <conio.h>
-#include <ctype.h>
 using namespace std;
 
 void askData(int);
 void checkStudent(int);
 void askName(int);
-void askActivity(int);
+void askActiveness(int);
 void askProject(int);
 void askExam(int);
-void alphabeticOrder(int);
+void printStudents();
 
-const int maxAmountOfStudents = 1;
+const int maxAmountOfStudents = 2;
 
 struct student
 {
-    std::string name;
+    string name;
     double activeness;
     bool workDone;
     double examPoints;
@@ -32,19 +30,11 @@ int main(void)
     for (i = 0; i < maxAmountOfStudents; i++)
     {
         askData(i);
-        std::cout << endl;
+        checkStudent(i);
+        cout << endl;
     }
 
-    for (i = 0; i < maxAmountOfStudents; i++)
-    {
-        checkStudent(i);
-        std::cout << endl;
-    }
-
-    for (i = 0; i < maxAmountOfStudents; i++)
-    {
-        checkStudent(i);
-    }
+    printStudents();
 
     return 0;
 }
@@ -94,44 +84,47 @@ void checkStudent(int id)
 void askData(int id)
 {
     askName(id);
-    askActivity(id);
+    askActiveness(id);
     askProject(id);
     askExam(id);
+    cin.ignore(); // clears input buffer for the next round
 }
 
 void askName(int id)
 {
-    bool name = false;
-    while (!name)
+    bool nameValid = false;
+    while (!nameValid)
     {
-        std::cout << "Name of the student: ";
-        std::cin >> students[id].name;
+        cout << "Name of the student: ";
+        getline(cin, students[id].name);
+
         int badInput = 0;
-        for (int i = 0; i < students[id].name.size(); i++) // using .size() to get the length of our name
+        for (int i = 0; i < students[id].name.size(); i++)
         {
-            if (!isalpha(students[id].name[i]))
+            if (!isalpha(students[id].name[i]) && !isspace(students[id].name[i]))
             {
                 badInput = 1;
             }
         }
+
         if (badInput == 0)
         {
-            name = true;
+            nameValid = true;
         }
         else
         {
-            cout << "Bad input, please use only alphabets!" << endl;
+            cout << "Bad input, please use only alphabets and spaces!" << endl;
         }
     }
 }
 
-void askActivity(int id)
+void askActiveness(int id)
 {
     bool activity = false;
     while (!activity)
     {
-        std::cout << "Activity in exercises and lectures (decimal between 0.0 - 1.0): ";
-        std::cin >> students[id].activeness;
+        cout << "Activeness for taking part into lectures and exercises (decimal between 0.0 - 1.0): ";
+        cin >> students[id].activeness;
         if (students[id].activeness < 0.0 || students[id].activeness > 1.0)
         {
             cout << "Bad input, give a decimal number between 0.0 and 1.0" << endl;
@@ -148,9 +141,9 @@ void askProject(int id)
     bool project = false;
     while (!project)
     {
-        std::string userInput;
-        std::cout << "Is project work done? (Yes or No): ";
-        std::cin >> userInput;
+        string userInput;
+        cout << "Is project work done? (Yes or No): ";
+        cin >> userInput;
 
         if (userInput == "yes" || userInput == "YES" || userInput == "Yes")
         {
@@ -174,8 +167,8 @@ void askExam(int id)
     bool exam = false;
     while (!exam)
     {
-        std::cout << "Exam score (percentage): ";
-        std::cin >> students[id].examPoints;
+        cout << "Exam score (percentage): ";
+        cin >> students[id].examPoints;
         if (students[id].examPoints < 0 || students[id].examPoints > 100)
         {
             cout << "Bad input, give percentage (0-100%)" << endl;
@@ -187,6 +180,18 @@ void askExam(int id)
     }
 }
 
-void alphabeticOrder(int)
+void printStudents()
 {
+    int i = 0;
+    for (i = 0; i < maxAmountOfStudents; i++)
+    {
+        if (students[i].passed)
+        {
+            cout << students[i].name << " has passed the course, with grade: " << students[i].grade << endl;
+        }
+        else
+        {
+            cout << students[i].name << " didn't pass the course." << endl;
+        }
+    }
 }
