@@ -1,35 +1,36 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 using namespace std;
 
 // const variable
-const int names = 5;
+const int NAMES = 5;
+const int LEN = 50;
 
 // declaring function
-string getName(int);
+void getName(char[],int);
 
 // MAIN FUNCTION
 int main(void)
 {
-    string namelist[5] = {}; // empty list
+    char namelist[NAMES][LEN] = {}; // empty list
     int i, j, k;             // variable used in our loops
-    string temp;             // temporary variable to hold string
+    char temp[LEN];             // temporary variable to hold string
 
-    for (i = 0; i < names; i++) // collecting names
+    for (i = 0; i < NAMES; i++) // collecting names
     {
-        string userInput = getName(i + 1);
-        namelist[i] = userInput;
+        getName(namelist[i],LEN);
     }
 
-    for (j = 0; j < names; j++) // bubble sort to put names in ascending order
+    for (j = 0; j < NAMES; j++) // bubble sort to put names in ascending order
     {
-        for (k = j + 1; k < names; k++)
+        for (k = j + 1; k < NAMES; k++)
         {
-            if (namelist[j] > namelist[k])
+            if (strcmp(namelist[j], namelist[k]) > 0)
             {
-                temp = namelist[k];
-                namelist[k] = namelist[j];
-                namelist[j] = temp;
+                strncpy(temp, namelist[k], LEN);
+                strncpy(namelist[k], namelist[j], LEN);
+                strncpy(namelist[j], temp, LEN);
             }
         }
     }
@@ -37,7 +38,7 @@ int main(void)
     cout << endl
          << "Names sorted in ascending alphabetic order: " << endl; // printing header
 
-    for (i = 0; i < names; i++) // printing the names from the list
+    for (i = 0; i < NAMES; i++) // printing the names from the list
     {
         cout << namelist[i] << endl;
     }
@@ -47,12 +48,8 @@ int main(void)
 
 // DEFINING FUNCTIONS
 
-// function which asks user to input names
-string getName(int i)
+void getName(char name[], int length)
 {
-    char userInput[100] = {};
-    cout << "give " << i << ". name: ";
-    cin >> userInput;
-    userInput[0] = toupper(userInput[0]); // turning first letter of the string to upper
-    return string(userInput);             // returning string back to main function
+    cout << "give name: ";
+    cin.getline(name,length);
 }
