@@ -12,7 +12,7 @@ void askExam(int);
 void printStudents();
 
 // amount of students our application will take as input
-const int amountOfStudents = 3;
+const int STUDENT_AMOUNT = 3;
 
 // declaring struct
 struct student
@@ -26,13 +26,13 @@ struct student
 };
 
 // declaring array of students
-student students[amountOfStudents];
+student students[STUDENT_AMOUNT];
 
 // MAIN FUNCTION
 int main(void)
 {
     int i;
-    for (i = 0; i < amountOfStudents; i++)
+    for (i = 0; i < STUDENT_AMOUNT; i++)
     {
         askData(i);      // asking for input
         checkStudent(i); // calculating grade and checking if course is passed
@@ -197,7 +197,7 @@ void askExam(int id)
 void printStudents()
 {
     int i = 0;
-    for (i = 0; i < amountOfStudents; i++)
+    for (i = 0; i < STUDENT_AMOUNT; i++)
     {
         if (students[i].passed)
         {
