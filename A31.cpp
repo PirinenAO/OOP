@@ -3,8 +3,11 @@ to calculate the sum of numbers in the array and print the result to the standar
 #include <iostream>
 using namespace std;
 
+// Constants
+const int NUMBERS = 5;
+
 // Variables
-double number_list[5];
+double number_list[NUMBERS];
 double *list_pointer = number_list; // pointing to the first memory address in array
 
 // Declaring functions
@@ -26,7 +29,7 @@ void askNumber(void)
 {
     int i;
     double user_input;
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < NUMBERS; i++)
     {
         cout << "Give decimal number: ";
         cin >> user_input;
@@ -40,7 +43,7 @@ void countSum()
 {
     double sum = 0.0;
     int i;
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < NUMBERS; i++)
     {
         sum += *list_pointer; // adding number to sum
         list_pointer++;       // incrementing list_pointer to point to the next memory address
