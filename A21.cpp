@@ -8,18 +8,18 @@ const int NAMES = 5;
 const int LEN = 50;
 
 // declaring function
-void getName(char[],int);
+void getName(char[], int);
 
 // MAIN FUNCTION
 int main(void)
 {
     char namelist[NAMES][LEN] = {}; // empty list
-    int i, j, k;             // variable used in our loops
-    char temp[LEN];             // temporary variable to hold string
+    int i, j, k;                    // variables used in our loops
+    char temp[LEN];                 // temporary variable to hold string
 
     for (i = 0; i < NAMES; i++) // collecting names
     {
-        getName(namelist[i],LEN);
+        getName(namelist[i], LEN);
     }
 
     for (j = 0; j < NAMES; j++) // bubble sort to put names in ascending order
@@ -51,5 +51,5 @@ int main(void)
 void getName(char name[], int length)
 {
     cout << "give name: ";
-    cin.getline(name,length);
+    cin.getline(name, length);
 }
