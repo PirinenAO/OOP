@@ -45,6 +45,7 @@ void sortString(void)
     }
 
     // printing out the sorted string
-    cout << "content of the string in ascending order: " << endl
+    cout << endl
+         << "Content of the string in ascending order: " << endl
          << user_input;
 }
