@@ -45,8 +45,7 @@ void countSum()
     int i;
     for (i = 0; i < NUMBERS; i++)
     {
-        sum += *list_pointer; // adding number to sum
-        list_pointer++;       // incrementing list_pointer to point to the next memory address
+        sum += *list_pointer++; // adding number to sum
     }
 
     cout << "Sum: " << sum;

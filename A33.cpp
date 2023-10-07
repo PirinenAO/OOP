@@ -4,16 +4,13 @@ in the strings are the same and what are different.*/
 #include <iostream>
 using namespace std;
 
-const char *string1 = "ABCDEFGHIJK";
-const char *string2 = "ADCBFFHJIJK";
-
-const char *ptr1 = string1;
-const char *ptr2 = string2;
+const char *ptr1 = "ABCDEFGHIJK";
+const char *ptr2 = "ADCBFFHJIJK";
 
 int main(void)
 {
     int counter;
-    while (*ptr1 != '\0' && *ptr2 != '\0')
+    while (*ptr1 && *ptr2)
     {
         if (*ptr1 == *ptr2)
         {

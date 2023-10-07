@@ -25,15 +25,15 @@ int main(void)
 void sortString(void)
 {
     int LENGTH = user_input.length(); // variable which holds the length of our string
-
+    char *p1, *p2;
     // bubble sort algorithm
     for (int i = 0; i < LENGTH; i++)
     {
         for (int j = 0; j < LENGTH - 1; j++)
         {
             // declaring pointers
-            char *p1 = &user_input[j];
-            char *p2 = p1 + 1;
+            p1 = &user_input[j];
+            p2 = p1 + 1;
             // comparing pointers
             if (*p1 > *p2)
             {
@@ -47,5 +47,5 @@ void sortString(void)
     // printing out the sorted string
     cout << endl
          << "Content of the string in ascending order: " << endl
-         << user_input;
+         << user_input << endl;
 }
