@@ -173,6 +173,7 @@ void printSummary(CUSTOMER *ptr1, ROOM *ptr2)
         cout << "Room ID: " << ptr2[i].room_id << endl;
         cout << "Room type: " << ptr2[i].room_type << endl;
         cout << "Customer: ";
+        // finding the customer name for the current room
         for (int j = 0; j < CUSTOMER_AMOUNT; j++)
         {
             if (ptr2[i].room_id == ptr1[j].room_id)
@@ -180,7 +181,6 @@ void printSummary(CUSTOMER *ptr1, ROOM *ptr2)
                 cout << ptr1[j].name << endl;
                 cout << "Nights: " << ptr1[j].number_of_nights << endl;
                 cout << "Price: " << ptr2[i].price_per_night * ptr1[j].number_of_nights << "$" << endl;
-
                 customer = true;
                 break;
             }
