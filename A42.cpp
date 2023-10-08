@@ -42,7 +42,7 @@ int main(void)
     CUSTOMER *customers;
 
     // setting up rooms
-    cout << "How many rooms you want to add?" << endl;
+    cout << "How many rooms to add?" << endl;
     cin >> ROOM_AMOUNT;
     try
     {
@@ -75,7 +75,8 @@ int main(void)
     // deleting reserved memory addresses
     rooms = NULL;
     customers = NULL;
-    delete[] rooms, customers;
+    delete[] rooms;
+    delete[] customers;
 }
 
 // defining functions
@@ -114,6 +115,7 @@ void addCustomers(CUSTOMER *ptr1, ROOM *ptr2)
     {
         // clearing input buffer to avoid issues
         cin.ignore();
+        // asking data
         cout
             << endl;
         cout << "Customers name: " << endl;
@@ -127,7 +129,7 @@ void addCustomers(CUSTOMER *ptr1, ROOM *ptr2)
         cout << "Room type: " << endl;
         cin >> room_type;
 
-        // searching for room matching users needs;
+        // searching for room matching users needs
         int room_id = findRoom(room_type, ptr2);
         if (room_id == 0)
         {
@@ -164,6 +166,7 @@ void printSummary(CUSTOMER *ptr1, ROOM *ptr2)
 {
     bool customer;
     cout << "---------------------" << endl;
+    // looping through all rooms and printing their data
     for (int i = 0; i < ROOM_AMOUNT; i++)
     {
         customer = false;
@@ -179,10 +182,10 @@ void printSummary(CUSTOMER *ptr1, ROOM *ptr2)
                 cout << "Price: " << ptr2[i].price_per_night * ptr1[j].number_of_nights << "$" << endl;
 
                 customer = true;
-                j = CUSTOMER_AMOUNT;
+                break;
             }
         }
-
+        // if there is no customer
         if (!customer)
         {
             cout << "no customer" << endl;
