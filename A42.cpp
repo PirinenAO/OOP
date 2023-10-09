@@ -28,7 +28,7 @@ struct CUSTOMER
     int number_of_nights;
 };
 
-// functions
+// declaring functions
 void addRooms(ROOM *ptr);
 void addCustomers(CUSTOMER *ptr1, ROOM *ptr2);
 void printSummary(CUSTOMER *ptr1, ROOM *ptr2);
@@ -55,7 +55,7 @@ int main(void)
     addRooms(rooms);
 
     // adding customers
-    cout << endl;
+    cout << "---------------------" << endl;
     cout << "How many customers?" << endl;
     cin >> CUSTOMER_AMOUNT;
     try
@@ -81,7 +81,7 @@ int main(void)
 // defining functions
 
 // function to setup rooms for the system
-void addRooms(ROOM *ptr)
+void addRooms(ROOM *rooms)
 {
     // variables
     int i, room_type, price_per_night;
@@ -89,21 +89,21 @@ void addRooms(ROOM *ptr)
     // loop for room setups
     for (i = 0; i < ROOM_AMOUNT; i++)
     {
-        cout << endl;
-        ptr[i].room_id = 1000 + i;
-        cout << "Setting up room ID " << ptr[i].room_id << endl;
+        cout << "---------------------" << endl;
+        rooms[i].room_id = 1000 + i;
+        cout << "Setting up room ID " << rooms[i].room_id << endl;
         cout << "Set room type (Single = 1, Double = 2 or Triple = 3)" << endl;
         cin >> room_type;
-        ptr[i].room_type = room_type;
+        rooms[i].room_type = room_type;
         cout << "Set price per night: " << endl;
         cin >> price_per_night;
-        ptr[i].price_per_night = price_per_night;
-        ptr[i].status = 0;
+        rooms[i].price_per_night = price_per_night;
+        rooms[i].status = 0;
     }
 }
 
 // function to add customer data
-void addCustomers(CUSTOMER *ptr1, ROOM *ptr2)
+void addCustomers(CUSTOMER *customers, ROOM *rooms)
 {
     // variables
     int nights, room_type, i;
@@ -114,21 +114,20 @@ void addCustomers(CUSTOMER *ptr1, ROOM *ptr2)
     {
         // clearing input buffer to avoid issues
         cin.ignore();
-        cout
-            << endl;
+        cout << "---------------------" << endl;
         cout << "Customers name: " << endl;
         getline(cin, name_input);
-        ptr1[i].name = name_input;
+        customers[i].name = name_input;
 
         cout << "How many nights: " << endl;
         cin >> nights;
-        ptr1[i].number_of_nights = nights;
+        customers[i].number_of_nights = nights;
 
         cout << "Room type: " << endl;
         cin >> room_type;
 
         // searching for room matching users needs;
-        int room_id = findRoom(room_type, ptr2);
+        int room_id = findRoom(room_type, rooms);
         if (room_id == 0)
         {
             cout << endl
@@ -136,22 +135,22 @@ void addCustomers(CUSTOMER *ptr1, ROOM *ptr2)
         }
         else
         {
-            ptr1[i].room_id = room_id;
+            customers[i].room_id = room_id;
         }
     }
 }
 
 // function to find matching room for the user
-int findRoom(int type, ROOM *ptr)
+int findRoom(int type, ROOM *rooms)
 {
     // looping through all rooms
     for (int i = 0; i < ROOM_AMOUNT; i++)
     {
         // if the room type matches, and the rooms if free
-        if (ptr[i].room_type == type && ptr[i].status == 0)
+        if (rooms[i].room_type == type && rooms[i].status == 0)
         {
-            ptr[i].status = 1;     // status to 1, so no double bookings
-            return ptr[i].room_id; // returning rooms id
+            rooms[i].status = 1;     // status to 1, so no double bookings
+            return rooms[i].room_id; // returning rooms id
         }
     }
 
@@ -160,23 +159,23 @@ int findRoom(int type, ROOM *ptr)
 }
 
 // function to print out the rooms and customers at the end
-void printSummary(CUSTOMER *ptr1, ROOM *ptr2)
+void printSummary(CUSTOMER *customers, ROOM *rooms)
 {
     bool customer;
     cout << "---------------------" << endl;
     for (int i = 0; i < ROOM_AMOUNT; i++)
     {
         customer = false;
-        cout << "Room ID: " << ptr2[i].room_id << endl;
-        cout << "Room type: " << ptr2[i].room_type << endl;
+        cout << "Room ID: " << rooms[i].room_id << endl;
+        cout << "Room type: " << rooms[i].room_type << endl;
         cout << "Customer: ";
         for (int j = 0; j < CUSTOMER_AMOUNT; j++)
         {
-            if (ptr2[i].room_id == ptr1[j].room_id)
+            if (rooms[i].room_id == customers[j].room_id)
             {
-                cout << ptr1[j].name << endl;
-                cout << "Nights: " << ptr1[j].number_of_nights << endl;
-                cout << "Price: " << ptr2[i].price_per_night * ptr1[j].number_of_nights << "$" << endl;
+                cout << customers[j].name << endl;
+                cout << "Nights: " << customers[j].number_of_nights << endl;
+                cout << "Price: " << rooms[i].price_per_night * customers[j].number_of_nights << "$" << endl;
 
                 customer = true;
                 j = CUSTOMER_AMOUNT;
