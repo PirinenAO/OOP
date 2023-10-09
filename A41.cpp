@@ -9,15 +9,19 @@ int number = 0;
 int *ptr = &number;
 
 // creating a reference for the pointer variable
-int &int_reference = *ptr;
+int *&int_reference = ptr;
 
 int main(void)
 {
     // incrementing the int variable by using a reference to its pointer
-    while (int_reference != 10)
+    while (*int_reference != 10)
     {
-        cout << ++int_reference << endl;
+        cout << ++*int_reference << endl;
     }
+
+    cout << ptr << " " << int_reference << endl;
+    (*int_reference)++;
+    cout << *ptr << " " << *int_reference;
 
     return 0;
 }

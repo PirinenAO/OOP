@@ -9,8 +9,8 @@ After reading the data, the program must print a list which shows which room (ro
 using namespace std;
 
 // variables
-int CUSTOMER_AMOUNT;
-int ROOM_AMOUNT;
+int customer_amount;
+int room_amount;
 
 // structs
 struct ROOM
@@ -43,10 +43,10 @@ int main(void)
 
     // setting up rooms
     cout << "How many rooms to add?" << endl;
-    cin >> ROOM_AMOUNT;
+    cin >> room_amount;
     try
     {
-        rooms = new ROOM[ROOM_AMOUNT];
+        rooms = new ROOM[room_amount];
     }
     catch (bad_alloc &xa)
     {
@@ -57,11 +57,11 @@ int main(void)
     // adding customers
     cout << "---------------------" << endl;
     cout << "How many customers?" << endl;
-    cin >> CUSTOMER_AMOUNT;
+    cin >> customer_amount;
     try
     {
 
-        customers = new CUSTOMER[CUSTOMER_AMOUNT];
+        customers = new CUSTOMER[customer_amount];
     }
     catch (bad_alloc &xa)
     {
@@ -75,8 +75,7 @@ int main(void)
     // deleting reserved memory addresses
     rooms = NULL;
     customers = NULL;
-    delete[] rooms;
-    delete[] customers;
+    delete[] rooms, customers;
 }
 
 // defining functions
@@ -88,7 +87,7 @@ void addRooms(ROOM *rooms)
     int i, room_type, price_per_night;
 
     // loop for room setups
-    for (i = 0; i < ROOM_AMOUNT; i++)
+    for (i = 0; i < room_amount; i++)
     {
         cout << "---------------------" << endl;
         rooms[i].room_id = 1000 + i;
@@ -111,7 +110,7 @@ void addCustomers(CUSTOMER *customers, ROOM *rooms)
     string name_input;
 
     // loop for customer setups
-    for (i = 0; i < CUSTOMER_AMOUNT; i++)
+    for (i = 0; i < customer_amount; i++)
     {
         // clearing input buffer to avoid issues
         cin.ignore();
@@ -145,7 +144,7 @@ void addCustomers(CUSTOMER *customers, ROOM *rooms)
 int findRoom(int type, ROOM *rooms)
 {
     // looping through all rooms
-    for (int i = 0; i < ROOM_AMOUNT; i++)
+    for (int i = 0; i < room_amount; i++)
     {
         // if the room type matches, and the rooms if free
         if (rooms[i].room_type == type && rooms[i].status == 0)
@@ -165,14 +164,14 @@ void printSummary(CUSTOMER *customers, ROOM *rooms)
     bool customer;
     cout << "---------------------" << endl;
     // looping through all rooms and printing their data
-    for (int i = 0; i < ROOM_AMOUNT; i++)
+    for (int i = 0; i < room_amount; i++)
     {
         customer = false;
         cout << "Room ID: " << rooms[i].room_id << endl;
         cout << "Room type: " << rooms[i].room_type << endl;
         cout << "Customer: ";
         // finding the customer name for the current room
-        for (int j = 0; j < CUSTOMER_AMOUNT; j++)
+        for (int j = 0; j < customer_amount; j++)
         {
             if (rooms[i].room_id == customers[j].room_id)
             {
