@@ -10,7 +10,7 @@ stay. It should also be possible to print out a list of customers and their room
 as well as a list of free and reserved rooms.*/
 #include <iostream>
 #include <string>
-#include <conio.h>
+#include <cstdio>
 using namespace std;
 
 const int MAX_CUSTOMER_CAPACITY = 100;
@@ -332,7 +332,8 @@ int main(void)
         cout << endl;
         cout << "Press A to add customer, C to print customers" << endl;
         cout << "F to print free rooms, R to print reserved rooms, and Q to quit" << endl;
-        c = getch();
+        cin.ignore();
+        c = getchar();
         if (c == 'a' || c == 'A')
         {
             all_booked = hotel->check_if_all_booked();
