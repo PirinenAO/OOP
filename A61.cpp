@@ -360,7 +360,7 @@ int main(void)
              << "H to display hotel information" << endl
              << "Q to quit " << endl;
         cout << "#######################" << endl;
-        c = getchar();
+        cin >> c;
         if (c == 'a' || c == 'A')
         {
             hotel->add_room();
