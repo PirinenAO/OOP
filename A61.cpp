@@ -23,8 +23,8 @@ class ROOM
     int room_number;
     string area;
     string type;
-    int price;      // per night
-    int status = 1; // 1 = free, 0 = reserved
+    int price; // per night
+    int status;
     string customer;
 
 public:
@@ -314,6 +314,7 @@ void ROOM::set_info(int room_number, string area, string type, int price)
     this->area = area;
     this->type = type;
     this->price = price;
+    this->status = 1;
 }
 
 // CUSTOMER METHODS
