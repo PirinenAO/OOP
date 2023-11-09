@@ -10,7 +10,6 @@ stay. It should also be possible to print out a list of customers and their room
 as well as a list of free and reserved rooms.*/
 #include <iostream>
 #include <string>
-#include <cstdio>
 using namespace std;
 
 const int MAX_CUSTOMER_CAPACITY = 100;
@@ -379,6 +378,9 @@ int main(void)
         }
         else if (c == 'q' || c == 'Q')
         {
+            delete[] hotel;
+            delete[] hotel->rooms;
+            delete[] hotel->customers;
             break;
         }
         else if (c == 'b' || c == 'B')
