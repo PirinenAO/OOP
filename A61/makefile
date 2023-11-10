@@ -17,15 +17,11 @@ SRC= ./src/
 CFLAGS = -c -I$(INCLUDE)
 
 
-#We could have also mentioned the list of source files 
-#SOURCES =  profession.cpp employee.cpp main.cpp
-
 #$(patsubst pattern,replacement,text)
 #Below we assume that the .cpp source files are under $(SRC) directory
 OBJECTS := $(patsubst %.cpp,%.o,$(wildcard $(SRC)*.cpp))
 
-#Here we rename object files by replacing .cpp by .o of files.
-#OBJECTS = $(SOURCES:.cpp=.o)
+#Defining executables file name
 EXECUTABLE = A61.exe
 
 #Here we define all rule and its dependencies
@@ -42,7 +38,11 @@ $(EXECUTABLE) : $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean :
-	del $(OBJECTS) $(EXECUTABLE)
+#FOR LINUX
+#	-rm -rf $(OBJECTS) $(EXECUTABLE) 
+
+#FOR WINDOWS
+	del $(subst /,\,$(OBJECTS)) $(EXECUTABLE)
 
 
 #Here we define a new rule by combining two predefined rules
