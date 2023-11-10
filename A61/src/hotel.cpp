@@ -33,10 +33,10 @@ void HOTEL::set_info(string name, string address, int number_of_stars)
     this->name = name;
     this->address = address;
     this->number_of_stars = number_of_stars;
-    this->number_of_customers = 1; // initialization of customers
-    this->number_of_rooms = 1;     // initialization of rooms
-    this->rooms = new ROOM[number_of_rooms];
-    this->customers = new CUSTOMER[number_of_customers];
+    this->number_of_customers = 0; // initialization of customers
+    this->number_of_rooms = 0;     // initialization of rooms
+    this->rooms = new ROOM;
+    this->customers = new CUSTOMER;
 }
 
 void HOTEL::add_room()
@@ -82,13 +82,11 @@ void HOTEL::add_room()
     }
 
     rooms = temp;
-    // this->rooms[number_of_rooms - 1].set_info(room_number, area, type, price);
-    // this->number_of_rooms++;
 }
 
 void HOTEL::add_customer()
 {
-    // this->number_of_customers++;
+    this->number_of_customers++;
 
     CUSTOMER *temp;
 
@@ -109,8 +107,6 @@ void HOTEL::add_customer()
         cout << "memory allocation failed for customer" << endl;
         return;
     }
-
-    // this->customers[number_of_customers] = new CUSTOMER;
 
     cin.ignore();
     cout << endl
@@ -144,7 +140,7 @@ void HOTEL::add_customer()
         temp[i] = this->customers[i - 1];
     }
 
-    this->number_of_customers++;
+    customers = temp;
 }
 
 int HOTEL::find_price(int length_of_stay, int room_number)

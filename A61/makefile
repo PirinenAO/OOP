@@ -1,8 +1,8 @@
 #Here we specify compiler
 CC = g++
 #Here we define include dir
-INCLUDE = ./include
-SRC=./src/
+INCLUDE = ./include/
+SRC= ./src/
 
 # compiler flags:
 #-g flag adds debugging information to the executable file
@@ -26,7 +26,7 @@ OBJECTS := $(patsubst %.cpp,%.o,$(wildcard $(SRC)*.cpp))
 
 #Here we rename object files by replacing .cpp by .o of files.
 #OBJECTS = $(SOURCES:.cpp=.o)
-EXECUTABLE = A61
+EXECUTABLE = A61.exe
 
 #Here we define all rule and its dependencies
 all: $(OBJECTS) $(EXECUTABLE)
@@ -42,7 +42,7 @@ $(EXECUTABLE) : $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean :
-	-rm -f $(OBJECTS) $(EXECUTABLE)
+	del $(OBJECTS) $(EXECUTABLE)
 
 
 #Here we define a new rule by combining two predefined rules
