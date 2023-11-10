@@ -223,7 +223,6 @@ void HOTEL::print_free_rooms()
             cout << "--------------------" << endl;
         }
     }
-    cout << endl;
 }
 
 void HOTEL::print_reserved_rooms()
