@@ -7,6 +7,8 @@ order based on the customer amount of purchase. Use separate functions
 to read, sort and print customer information.*/
 #include <iostream>
 #include <string>
+#include <cstring>
+
 using namespace std;
 
 // variables
