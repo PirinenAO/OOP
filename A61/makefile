@@ -22,7 +22,7 @@ CFLAGS = -c -I$(INCLUDE)
 OBJECTS := $(patsubst %.cpp,%.o,$(wildcard $(SRC)*.cpp))
 
 #Defining executables file name
-EXECUTABLE = A61.exe
+EXECUTABLE = A61
 
 #Here we define all rule and its dependencies
 all: $(OBJECTS) $(EXECUTABLE)
@@ -39,10 +39,10 @@ $(EXECUTABLE) : $(OBJECTS)
 
 clean :
 #FOR LINUX
-#	-rm -rf $(OBJECTS) $(EXECUTABLE) 
+	-rm -rf $(OBJECTS) $(EXECUTABLE) 
 
 #FOR WINDOWS
-	del $(subst /,\,$(OBJECTS)) $(EXECUTABLE)
+#	del $(subst /,\,$(OBJECTS)) $(EXECUTABLE)
 
 
 #Here we define a new rule by combining two predefined rules
