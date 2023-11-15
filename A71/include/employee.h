@@ -13,7 +13,7 @@ public:
     EMPLOYEE();
     EMPLOYEE(string name, string job, int salary, int id);
 
-    void search();
+    EMPLOYEE *search(int id);
     void update();
     string return_string();
 };

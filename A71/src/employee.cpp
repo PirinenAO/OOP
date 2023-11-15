@@ -3,6 +3,8 @@
 #include "../include/employee.h"
 using namespace std;
 
+EMPLOYEE::EMPLOYEE(){};
+
 EMPLOYEE::EMPLOYEE(string name, string job, int salary, int id)
 {
     this->name = name;
@@ -14,4 +16,12 @@ EMPLOYEE::EMPLOYEE(string name, string job, int salary, int id)
 string EMPLOYEE::return_string()
 {
     return "Name: " + name + " ID: " + to_string(id) + " Job: " + job + " Salary: " + to_string(salary);
+}
+
+EMPLOYEE *EMPLOYEE::search(int id)
+{
+    if (this->id == id)
+        return this;
+
+    return nullptr;
 }
