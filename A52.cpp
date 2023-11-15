@@ -28,9 +28,9 @@ int main(void)
 
 double sumFunction(double n)
 {
-    if (!n)
+    if (n == 1)
     {
-        return 0;
+        return 1 / 2.0;
     }
 
     return 1.0 / (2 * n) + sumFunction(n - 1);
@@ -39,9 +39,9 @@ double sumFunction(double n)
 double multiplicationFunction(double n)
 {
 
-    if (!n)
+    if (n == 1)
     {
-        return 1;
+        return -1 / 3.0;
     }
 
     return -n / (2 * n + 1) * multiplicationFunction(n - 1);
