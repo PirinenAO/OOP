@@ -25,3 +25,11 @@ EMPLOYEE *EMPLOYEE::search(int id)
 
     return nullptr;
 }
+
+void EMPLOYEE::update(string name, string job, int id, int salary)
+{
+    this->name = name;
+    this->job = job;
+    this->id = id;
+    this->salary = salary;
+}

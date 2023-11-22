@@ -12,8 +12,7 @@ class EMPLOYEE
 public:
     EMPLOYEE();
     EMPLOYEE(string name, string job, int salary, int id);
-
     EMPLOYEE *search(int id);
-    void update();
     string return_string();
+    void update(string name, string job, int id, int salary);
 };

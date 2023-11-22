@@ -34,7 +34,7 @@ $(EXECUTABLE) : $(OBJECTS)
 #The $< refers to the first item in the dependency list
 #The $@ refers the target file, file.o.
 #This is a suffix rule telling how to turn .cpp into .o file
-.cpp.o: *.h
+%.o: %.cpp %.h
 	$(CC) $(CFLAGS) $< -o $@
 
 clean :
