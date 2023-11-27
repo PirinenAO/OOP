@@ -6,7 +6,6 @@
 int main(void)
 {
     int number_of_employees = 0;
-    //(string name, string job, int salary, int id);
     string name;
     string job;
     int salary;
@@ -17,49 +16,60 @@ int main(void)
 
     while (true)
     {
+        bool found = false;
+
         cout << endl;
         cout << "Amount of employees in the database: " << number_of_employees << endl;
-        cout << "A: add new employee information" << endl;
-        cout << "R: remove employee's information" << endl;
+        cout << "A: Add new employee information" << endl;
+        cout << "R: Remove employee's information" << endl;
         cout << "U: Update employee's information" << endl;
-        cout << "S: search based on employee's ID" << endl;
-        cout << "Q: quit" << endl;
+        cout << "S: Search based on employee's ID" << endl;
+        cout << "Q: Quit" << endl;
 
         c = getchar();
         c = toupper(c);
 
         cin.ignore();
-        bool found = false;
+
         if (c == 'A') // ADDING EMPLOYEEE
         {
             number_of_employees++;
+            EMPLOYEE *temp;
 
-            EMPLOYEE *temp = new EMPLOYEE[number_of_employees];
+            try
+            {
+                temp = new EMPLOYEE[number_of_employees];
+            }
+            catch (bad_alloc &xa)
+            {
+                cout << "memory allocation failed for room" << endl;
+            }
 
             cout << endl
-                 << "Give name: " << endl;
+                 << "Name: " << endl;
             getline(cin, name);
-            cout << "Give ID:" << endl;
+            cout << "ID:" << endl;
             cin >> id;
             cin.ignore();
-            cout << "Give job" << endl;
+            cout << "Job:" << endl;
             getline(cin, job);
-            cout << "Give salary" << endl;
+            cout << "Salary:" << endl;
             cin >> salary;
 
-            temp[0] = EMPLOYEE(name, job, salary, id);
+            temp[number_of_employees - 1] = EMPLOYEE(name, job, salary, id);
 
-            for (int i = 1; i < number_of_employees; i++)
+            if (number_of_employees != 1)
             {
-                temp[i] = employees[i - 1];
+                for (int i = 0; i < number_of_employees - 1; i++)
+                {
+                    temp[i] = employees[i];
+                }
             }
 
             employees = temp;
         }
         else if (c == 'R') // REMOVING EMPLOYEE
         {
-            int index = 0;
-
             cout << endl
                  << "Give ID to be removed" << endl;
             cin >> id;
@@ -70,14 +80,26 @@ int main(void)
                 {
                     found = true;
                     number_of_employees--;
-                    EMPLOYEE *temp = new EMPLOYEE[number_of_employees];
 
-                    for (int j = 0; j < number_of_employees + 1; j++)
+                    EMPLOYEE *temp;
+                    try
                     {
-                        if (j != i)
+                        temp = new EMPLOYEE[number_of_employees];
+                    }
+                    catch (bad_alloc &xa)
+                    {
+                        cout << "memory allocation failed for room" << endl;
+                    }
+
+                    for (int j = 0; j < number_of_employees; j++)
+                    {
+                        if (j >= i)
                         {
-                            temp[index] = employees[j];
-                            index++;
+                            temp[j] = employees[j + 1];
+                        }
+                        else
+                        {
+                            temp[j] = employees[j];
                         }
                     }
 
@@ -152,7 +174,6 @@ int main(void)
             delete[] employees;
             exit(0);
         }
-
         cin.ignore();
     }
 }
