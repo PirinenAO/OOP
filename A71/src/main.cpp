@@ -42,7 +42,7 @@ int main(void)
             }
             catch (bad_alloc &xa)
             {
-                cout << "memory allocation failed for room" << endl;
+                cout << "memory allocation failed for employee" << endl;
             }
 
             cout << endl
@@ -82,13 +82,14 @@ int main(void)
                     number_of_employees--;
 
                     EMPLOYEE *temp;
+
                     try
                     {
                         temp = new EMPLOYEE[number_of_employees];
                     }
                     catch (bad_alloc &xa)
                     {
-                        cout << "memory allocation failed for room" << endl;
+                        cout << "memory allocation failed for employee" << endl;
                     }
 
                     for (int j = 0; j < number_of_employees; j++)
@@ -172,7 +173,7 @@ int main(void)
         else if (c == 'Q') // QUITTING
         {
             delete[] employees;
-            exit(0);
+            break;
         }
         cin.ignore();
     }
