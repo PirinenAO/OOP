@@ -1,0 +1,35 @@
+class User:
+
+first name, surname, phone number, username and password.
+
+get_info() method, which returns as text all user information except for the password.
+search() method, which receives the username as an argument and returns all the user information if the given username is the same as the user's username. 
+
+Define necessary constructors and destructor for the class.
+The destructor should display the username and password when it is called.
+
+
+
+
+class Admin as a friend class to class User:
+
+username and password
+
+authenticate(), which asks the admin username and password and then compares them with the existing admin username
+and password and returns true if they match and otherwise returns false if they do not match.
+
+set_usrname() method, which receives as argument a User object and a username and first calls authenticate() method 
+to authenticate the admin and then sets the username of the given User object if authentication of admin succeeds and otherwise returns a failure message.
+
+set_password() method, which receives as argument a User object and a password and first 
+calls authenticate() method to authenticate the admin and then sets the password of the given User object if 
+authentication of admin succeeds and otherwise returns a failure message.
+
+Define necessary constructors and the destructor for this class too
+The destructor should display a message saying that Admin object is being destroyed.
+
+
+
+
+In the main() function of the program create an array of User objects and an Admin object and use the Admin object's set_username() and set_password() 
+methods to set the user name and passwords of each user. After this call get_info() and search() methods of User objects to test their functionality. 
