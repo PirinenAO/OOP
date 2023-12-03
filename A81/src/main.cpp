@@ -3,24 +3,50 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
+#include <vector>
 using namespace std;
 
 int main(void)
 {
-    int number_of_users = 3;
-    USER *users = new USER[number_of_users];
+    string username;
+    string password;
+
+    int number_of_users = 2;
+
+    USER users[2] = {USER("Pekka", "Virtanen", "04040440"), USER("Ville", "Virtanen", "04040440")};
+
     ADMIN admin("admin", "admin");
 
-    users[0] = USER("Pekka", "Virtanen", "041234567", "PekkaVirt2", "pekka123");
-    users[1] = USER("Lauri", "Haavisto", "041234567", "Lauri33", "lauri123");
-    users[2] = USER("Susanna", "Lahti", "041234567", "SusLah", "susanna123");
-
-    while (true)
+    for (int i = 0; i < number_of_users; i++)
     {
-        cout << "U: Set new username" << endl;
-        cout << "P: Set new password" << endl;
-        cout << "S: Search for user" << endl;
+        cout << "Setting up username and password for: " << endl;
+        cout << users[i].get_info() << endl;
+
+        cout << endl
+             << "Username: " << endl;
+        getline(cin, username);
+        admin.set_username(users[i], username);
+
+        cout
+            << "Password: " << endl;
+        getline(cin, password);
+        admin.set_password(users[i], password);
     }
 
-    return 0;
+    cout << "Accounts created: " << endl;
+
+    for (int i = 0; i < number_of_users; i++)
+    {
+        cout
+            << users[i].get_info() << endl;
+    }
+
+    cout << endl
+         << "Search for user:" << endl;
+    getline(cin, username);
+    cout << endl;
+    for (int i = 0; i < number_of_users; i++)
+    {
+        cout << users[i].search(username) << endl;
+    }
 }

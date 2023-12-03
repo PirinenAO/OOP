@@ -7,17 +7,14 @@ USER::USER(){};
 
 USER::~USER()
 {
-    cout << endl
-         << "REMOVING USER: " + username << endl;
+    cout << "User " << username << " " << password << " is being destroyed" << endl;
 }
 
-USER::USER(string first_name, string surname, string phone_number, string username, string password)
+USER::USER(string first_name, string surname, string phone_number)
 {
     this->first_name = first_name;
     this->surname = surname;
     this->phone_number = phone_number;
-    this->username = username;
-    this->password = password;
 }
 
 string USER::get_info()
@@ -29,10 +26,8 @@ string USER::search(string username)
 {
     if (this->username == username)
     {
-        this->get_info();
+        return username + " " + password + " " + first_name + " " + surname + " " + phone_number;
     }
-    else
-    {
-        return "USER NOT FOUND";
-    }
+
+    return " ";
 }

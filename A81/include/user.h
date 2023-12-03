@@ -13,7 +13,7 @@ class USER
 
 public:
     USER();
-    USER(string first_name, string surname, string phone_number, string username, string password);
+    USER(string first_name, string surname, string phone_number);
     string get_info();
     string search(string username);
     ~USER();
