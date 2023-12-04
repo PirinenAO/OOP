@@ -3,12 +3,23 @@
 
 PERSON::PERSON(){};
 
-PERSON *PERSON::search(string first_name, string surname)
+bool PERSON::search(string first_name, string surname)
 {
+
     if (this->first_name == first_name && this->surname == surname)
     {
-        return this;
+        return true;
     }
+    else
+    {
+        cout << "User not found" << endl;
+        return false;
+    }
+}
 
-    return NULL;
+void PERSON::set_info(string first_name, string surname, string home_address)
+{
+    this->first_name = first_name;
+    this->surname = surname;
+    this->home_address = home_address;
 }
