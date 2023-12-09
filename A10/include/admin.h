@@ -14,10 +14,10 @@ public:
     Admin();
     Admin(string username, string password);
     bool authenticate();
-    void set_username();
-    void set_password();
-    void set_permissions(User user, char permissions[3]);
-    void remove_permissions(User user, char permissions[3]);
+    bool set_username(User &user, string username);
+    bool set_password(User &user, string password);
+    void set_permissions(User &user, char array[3]);
+    void remove_permissions(User &user, char permissions[3]);
 };
 
 #endif

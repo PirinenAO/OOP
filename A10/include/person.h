@@ -1,6 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Person
@@ -11,9 +12,12 @@ class Person
 
 public:
     Person();
-    Person(string first_name, string surname, string phone_number);
     string to_string();
-    Person search(string first_name, string surname, string phone_number);
+
+    bool search(string first_name, string surname);
+    bool search(string phone_number);
+    string return_phone_number();
+    void set_info(string first_name, string surname, string phone_number);
 };
 
 #endif
