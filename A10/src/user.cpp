@@ -16,7 +16,22 @@ void User::set_permissions(char array[3])
 {
     for (int i = 0; i < 3; i++)
     {
-        permissions[i] = array[i];
+        if (array[i] == 'r')
+        {
+            permissions[0] = array[i];
+        }
+        else if (array[i] == 'w')
+        {
+            permissions[1] = array[i];
+        }
+        else if (array[i] == 'x')
+        {
+            permissions[2] = array[i];
+        }
+        else
+        {
+            permissions[i] = '-';
+        }
     }
 }
 
@@ -35,5 +50,19 @@ bool User::compare(Person person_to_compare)
     else
     {
         return false;
+    }
+}
+
+void User::remove_permissions(char array[3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (array[i] == this->permissions[j])
+            {
+                this->permissions[j] = '-';
+            }
+        }
     }
 }

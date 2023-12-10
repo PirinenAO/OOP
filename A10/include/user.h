@@ -10,7 +10,7 @@ class User : public Person
     string password;
     char permissions[3];
     void set_permissions(char array[3]);
-
+    void remove_permissions(char array[3]);
     friend class Admin;
 
 public:

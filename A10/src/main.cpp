@@ -9,6 +9,7 @@ using namespace std;
 int amount_of_user = 0;
 
 void addUser(vector<User> &users, Admin admin);
+void removeUser(vector<User> &users);
 void setPermissions(User &user, Admin admin);
 void removePermissions(vector<User> &users, Admin admin);
 void searchByNumber(vector<User> &users);
@@ -31,6 +32,7 @@ int main(void)
         cout << "N to search user by name" << endl;
         cout << "M to search user by phone number" << endl;
         cout << "P to remove permissions" << endl;
+        cout << "X to display all users" << endl;
         cout << "Q to quit" << endl;
 
         c = getchar();
@@ -44,7 +46,7 @@ int main(void)
         }
         else if (c == 'R')
         {
-            cout << "removing user" << endl;
+            removeUser(users);
         }
         else if (c == 'N')
         {
@@ -58,7 +60,7 @@ int main(void)
         {
             removePermissions(users, admin);
         }
-        else if (c == 'Q')
+        else if (c == 'X')
         {
             for (int i = 0; i < amount_of_user; i++)
             {
@@ -70,7 +72,10 @@ int main(void)
                 cout << "Username: " << users[i].get_username() << endl;
                 cout << "Permissions:" << users[i].return_permissions() << endl;
             }
-            // break;
+        }
+        else if (c == 'Q')
+        {
+            break;
         }
     }
 }
@@ -119,6 +124,7 @@ void addUser(vector<User> &users, Admin admin)
     getline(cin, username);
     if (admin.set_username(user, username))
     {
+        cout << "---------------------------------------------" << endl;
         cout << "Password: " << endl;
         getline(cin, password);
         if (admin.set_password(user, password))
@@ -129,32 +135,68 @@ void addUser(vector<User> &users, Admin admin)
     }
 }
 
+void removeUser(vector<User> &users)
+{
+    bool found = false;
+    string first_name, surname;
+    cout << "---------------------------------------------" << endl;
+    cout << "First name: " << endl;
+    getline(cin, first_name);
+    cout << "Surname: " << endl;
+    getline(cin, surname);
+
+    for (int i = 0; i < amount_of_user; i++)
+    {
+        if (users[i].search(first_name, surname))
+        {
+            users.erase(users.begin() + i);
+            amount_of_user--;
+        }
+    }
+}
+
 void setPermissions(User &user, Admin admin)
 {
-    char array[3];
+    char permissions[3] = {'-', '-', '-'};
     string input;
     cout << "Give permissions (rwx): " << endl;
     getline(cin, input);
 
     int length = input.length();
 
+    // turning input lowercase
+    for (int i = 0; i < length; i++)
+    {
+        input[i] = tolower(input[i]);
+    }
+
     if (length <= 3)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < length; i++)
         {
-            if (input[i] == 'r' || input[i] == 'w' || input[i] == 'x')
+            if (input[i] == 'r')
             {
-                array[i] = input[i];
+                permissions[0] = input[i];
+            }
+            else if (input[i] == 'w')
+            {
+                permissions[1] = input[i];
+            }
+            else if (input[i] == 'x')
+            {
+                permissions[2] = input[i];
             }
             else
             {
-                array[i] = '-';
+                permissions[i] = '-';
             }
         }
-        admin.set_permissions(user, array);
+
+        admin.set_permissions(user, permissions);
     }
     else
     {
+        cout << "---------------------------------------------" << endl;
         cout << "Bad input! Permissions not set!" << endl;
     }
 }
@@ -185,6 +227,7 @@ void searchByNumber(vector<User> &users)
 
     if (!found)
     {
+        cout << "---------------------------------------------" << endl;
         cout << "No users found" << endl;
     }
 }
@@ -218,6 +261,7 @@ void searchByName(vector<User> &users)
 
     if (!found)
     {
+        cout << "---------------------------------------------" << endl;
         cout << "No users found" << endl;
     }
 }
@@ -225,7 +269,8 @@ void searchByName(vector<User> &users)
 void removePermissions(vector<User> &users, Admin admin)
 {
     bool found = false;
-    string first_name, surname;
+    char permissions[3];
+    string first_name, surname, input;
     cout << "---------------------------------------------" << endl;
 
     cout << "First name: " << endl;
@@ -233,13 +278,42 @@ void removePermissions(vector<User> &users, Admin admin)
     cout << "Surname: " << endl;
     getline(cin, surname);
 
-    for (int i = 0; i < amount_of_user; i++)
-    {
-        if (users[i].search(first_name, surname) && !found)
-        {
+    cout << "Permissions to be removed (rwx): " << endl;
+    getline(cin, input);
 
-            found = true;
+    int length = input.length();
+
+    // turning input lowercase
+    for (int i = 0; i < length; i++)
+    {
+        input[i] = tolower(input[i]);
+    }
+
+    if (length <= 3)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (input[i] == 'r' || input[i] == 'w' || input[i] == 'x')
+            {
+                permissions[i] = input[i];
+            }
+            else
+            {
+                permissions[i] = '-';
+            }
         }
+
+        for (int i = 0; i < amount_of_user; i++)
+        {
+            if (users[i].search(first_name, surname))
+            {
+                admin.remove_permissions(users[i], permissions);
+            }
+        }
+    }
+    else
+    {
+        cout << "Bad input! Permissions not removed!" << endl;
     }
 }
 

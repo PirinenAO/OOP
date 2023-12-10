@@ -48,7 +48,6 @@ bool Admin::authenticate()
     getline(cin, username);
     cout << "Admin password" << endl;
     getline(cin, password);
-    cout << "---------------------------------------------" << endl;
 
     if (this->username == username && this->password == password)
     {
@@ -64,4 +63,9 @@ void Admin::set_permissions(User &user, char array[3])
 {
 
     user.set_permissions(array);
+}
+
+void Admin::remove_permissions(User &user, char array[3])
+{
+    user.remove_permissions(array);
 }
