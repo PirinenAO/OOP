@@ -61,11 +61,24 @@ bool Admin::authenticate()
 
 void Admin::set_permissions(User &user, char array[3])
 {
-
-    user.set_permissions(array);
+    if (authenticate())
+    {
+        user.set_permissions(array);
+    }
+    else
+    {
+        cout << "Authentication failed! Permissions not set." << endl;
+    }
 }
 
 void Admin::remove_permissions(User &user, char array[3])
 {
-    user.remove_permissions(array);
+    if (authenticate())
+    {
+        user.remove_permissions(array);
+    }
+    else
+    {
+        cout << "Authentication failed! Permissions not set." << endl;
+    }
 }

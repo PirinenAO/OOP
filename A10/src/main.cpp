@@ -20,7 +20,7 @@ int main(void)
 {
     char c;
 
-    Admin admin = Admin("a", "a");
+    Admin admin = Admin("admin", "admin");
     vector<User> users;
 
     while (true)
@@ -119,7 +119,7 @@ void addUser(vector<User> &users, Admin admin)
     }
 
     setPermissions(user, admin);
-
+    cout << "---------------------------------------------" << endl;
     cout << "Username: " << endl;
     getline(cin, username);
     if (admin.set_username(user, username))
